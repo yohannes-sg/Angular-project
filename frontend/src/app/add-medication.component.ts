@@ -22,9 +22,12 @@ import { ToastrService } from 'ngx-toastr';
     <input type="text" formControlName="medication_class" id="medication_class" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
   </div>
   <div class="mb-4">
-    <label for="availability" class="block text-gray-700 font-bold mb-2">Availability:</label>
-    <input type="text" formControlName="availability" id="availability" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
-  </div>
+  <label for="availability" class="block text-gray-700 font-bold mb-2">Availability:</label>
+  <select formControlName="availability" id="availability" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
+    <option value="Prescription">Prescription</option>
+    <option value="OTC">OTC</option>
+  </select>
+</div>
   <div class="mb-4">
     <label for="image" class="block text-gray-700 font-bold mb-2">Upload Image:</label>
     <input type="file" id="image" (change)="onFileSelected($event)" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">

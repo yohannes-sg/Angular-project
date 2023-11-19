@@ -10,9 +10,10 @@ import { ToastrService } from 'ngx-toastr';
 <div>
       <form [formGroup]="editReviewForm" (ngSubmit)="onSubmit()" class="max-w-md mx-auto p-6 bg-white rounded shadow-md">
         <div class="mb-4">
-          <label for="editRating" class="block text-gray-700 font-bold mb-2">Review:</label>
-          <textarea formControlName="editReview" id="name" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"></textarea>
-        </div>
+  <label for="editRating" class="block text-gray-700 font-bold mb-2">Review:</label>
+  <textarea formControlName="editReview" id="name" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500" rows="6"></textarea>
+</div>
+
         <div class="mb-4">
           <label for="editRating" class="block text-gray-700 font-bold mb-2">Ratings:</label>
           <input type="number" formControlName="editRating" min="1" max="5" id="generic_name" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">

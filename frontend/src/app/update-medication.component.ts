@@ -42,12 +42,15 @@ import { ToastrService } from 'ngx-toastr';
      <input type="text" formControlName="medication_class" id="medication_class" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
    </div>
    <div class="mb-4">
-     <label for="availability" class="block text-gray-700 font-bold mb-2">Availability:</label>
-     <input type="text" formControlName="availability" id="availability" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
-   </div>
+  <label for="availability" class="block text-gray-700 font-bold mb-2">Availability:</label>
+  <select formControlName="availability" id="availability" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
+    <option value="Prescription">Prescription</option>
+    <option value="OTC">OTC</option>
+  </select>
+</div>
    <div class="mb-4">
      <label for="image" class="block text-gray-700 font-bold mb-2">Upload Image:</label>
-     <input type="file" id="image" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
+     <input type="file" id="image" (change)="onFileSelected($event)" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500">
    </div>
       <div class="flex justify-end">
         <button type="submit" [disabled]="!form.valid" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none">Update</button>
@@ -78,8 +81,10 @@ export class UpdateMedicationComponent {
     });
   }
   update() {
+    const token = this.authService.state_signal();
     this.medicationService.get_medication_byId(this.medicationId).subscribe(
       (respones) => {
+        if(respones.data.added_by.user_id===token._id){
         this.form.patchValue({
           name: respones.data.name,
           generic_name: respones.data.generic_name,
@@ -87,11 +92,15 @@ export class UpdateMedicationComponent {
           availability: respones.data.availability
         });
         this.signal = true;
-      },
-      error => {
-        this.#notification.error('Error occurred while fetching medication details')
       }
+      else {
+        this.#notification.error('No medication with this id added by you')
+      }
+    }
     );
+  }
+  onFileSelected(event: any) {
+    this.selectedImage = event.target.files[0];
   }
 
   updateMedication() {
@@ -113,8 +122,7 @@ export class UpdateMedicationComponent {
             this.#notification.success('Medication updated successfully')
           },
           (error) => {
-            this.#notification.error('please login first')
-            this.router.navigate(['', 'users', 'signin'])
+            this.#notification.error('please try again')
           }
         );
     } else {

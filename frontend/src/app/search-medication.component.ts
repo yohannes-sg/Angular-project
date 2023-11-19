@@ -31,7 +31,7 @@ import { ToastrService } from 'ngx-toastr';
           <div *ngFor="let medication of data " class="bg-white rounded shadow p-4">
           <a [routerLink]="['', 'medications', medication._id, 'details']" class="text-lg font-semibold mb-2 text-green-500 hover:text-pink-500">{{ medication.name }}</a><br/>
              <button (click)="toggleAddReview(medication._id)" class="mt-2 mr-4 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Add review</button>
-            <button [routerLink]="['','medications', medication._id, 'reviews', 'show-reviews']" class="mt-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">show reviews</button>
+            <button [routerLink]="['', 'medications', medication._id, 'reviews', 'show-reviews']" class="mt-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">show reviews</button>
           </div>
         </div>
       </div>
