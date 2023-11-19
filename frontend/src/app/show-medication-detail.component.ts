@@ -12,7 +12,8 @@ import { ToastrService } from 'ngx-toastr';
         <div class="grid grid-cols-1 gap-4">
           <div class="bg-white rounded shadow p-4">
             <h3 class="text-lg font-semibold mb-2"> {{ medication.name }} </h3>
-            <p class="text-sm text-gray-600">Generic Name: {{ medication._id }}</p>
+            <p class="text-sm text-gray-600">Generic Id: {{ medication._id }}</p>
+            <p class="text-sm text-gray-600">Generic Name: {{ medication.generic_name }}</p>
             <p class="text-sm text-gray-600">Medication Class: {{ medication.medication_class }}</p>
             <p class="text-sm text-gray-600">Availability:{{ medication.availability }} </p>
              <img [src]="imgUrl+medication.image._id" alt="medication.image.filename"> 
